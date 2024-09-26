@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel";
-import { validationResult } from "express-validator";
+// import { validationResult } from "express-validator";
 import {
   ValidationError,
   AuthError,
@@ -20,10 +20,10 @@ export const registerUser = async (
   const { username, email, password } = req.body;
 
   // Validate input
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(new ValidationError("Invalid input data"));
-  }
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return next(new ValidationError("Invalid input data"));
+  // }
 
   try {
     const existingUser = await User.findOne({ email });
@@ -57,10 +57,10 @@ export const loginUser = async (
   const { email, password } = req.body;
 
   // Validate input
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(new ValidationError("Invalid input data"));
-  }
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return next(new ValidationError("Invalid input data"));
+  // }
 
   try {
     const user = await User.findOne({ email });
